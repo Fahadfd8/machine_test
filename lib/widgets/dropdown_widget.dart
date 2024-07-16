@@ -10,7 +10,7 @@ class CustomDropdown extends StatefulWidget {
 }
 
 class _CustomDropdownState extends State<CustomDropdown> {
-  String dropdownValue = 'View';
+  String dropdownValue = 'View'; // Initial dropdown value
 
   @override
   Widget build(BuildContext context) {
@@ -34,38 +34,35 @@ class _CustomDropdownState extends State<CustomDropdown> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'More Actions:',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                ),
-                DropdownButton<String>(
-                  value: dropdownValue,
-                  icon: const Icon(Icons.arrow_drop_down),
-                  iconSize: 24,
-                  elevation: 16,
-                  style: const TextStyle(color: Colors.black, fontSize: 16),
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      dropdownValue = newValue!;
-                      if (widget.onChanged != null) {
-                        widget.onChanged!(dropdownValue);
-                      }
-                    });
-                  },
-                  items: <String>['View', 'Edit', 'Send', 'Delete']
-                      .map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: value == 'Delete'
-                          ? Text(value, style: TextStyle(color: Colors.red, fontSize: 16))
-                          : Text(value),
-                    );
-                  }).toList(),
-                ),
-              ],
+            Text(
+              'More Actions:',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
+            DropdownButton<String>(
+              value: dropdownValue,
+              icon: const Icon(Icons.arrow_drop_down),
+              iconSize: 24,
+              elevation: 16,
+              style: const TextStyle(color: Colors.black, fontSize: 16),
+              onChanged: (String? newValue) {
+                if (newValue != null) {
+                  setState(() {
+                    dropdownValue = newValue;
+                  });
+                  if (widget.onChanged != null) {
+                    widget.onChanged!(dropdownValue);
+                  }
+                }
+              },
+              items: <String>['View', 'Edit', 'Send', 'Delete']
+                  .map<DropdownMenuItem<String>>((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: value == 'Delete'
+                      ? Text(value, style: TextStyle(color: Colors.red, fontSize: 16))
+                      : Text(value),
+                );
+              }).toList(),
             ),
           ],
         ),

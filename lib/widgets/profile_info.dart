@@ -36,7 +36,7 @@ class _ProfileInfoState extends State<ProfileInfo> {
       future: _futureUser,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(child: CircularProgressIndicator());
+          return Center(child: Text('Loading...'));
         } else if (snapshot.hasError) {
           return Center(child: Text('Error: ${snapshot.error}'));
         } else {
@@ -45,6 +45,7 @@ class _ProfileInfoState extends State<ProfileInfo> {
       },
     );
   }
+
 
   Widget buildProfileInfo(User user) {
     return Center(
