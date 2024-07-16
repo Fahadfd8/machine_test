@@ -19,10 +19,10 @@ class _HomePageState extends State<HomePage> {
     CustomDropdown(),
     CountryStateDropdowns(),
     DisplayName(
-      firstName: 'John',
-      secondName: 'Doe',
+      firstName: 'James',
+      secondName: 'Bond ',
       prefix: 'Mr. ',
-      suffix: '',
+      suffix: '007',
     ),
     ProfileInfo(userId: 1),
     UrlNavigator(),
